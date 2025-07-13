@@ -44,19 +44,42 @@ class Budget:
 
 
 def main():
-    # Create a new budget with $1000 starting balance
-    my_budget = Budget(starting_balance=1000)
+    # Create a new budget with $0 starting balance
+    my_budget = Budget(starting_balance=0)
 
-    # Add income and expenses
-    my_budget.add_transaction(Income("Paycheck", 1500))
-    my_budget.add_transaction(Expense("Groceries", 200, "Food"))
-    my_budget.add_transaction(Expense("Gas", 60, "Transportation"))
-    my_budget.add_transaction(Income("Freelance", 400))
-    my_budget.add_transaction(Expense("Rent", 1000, "Housing"))
-    my_budget.add_transaction(Income("VA", 2300))
+    #creating a CLI for user to update/view budget
 
-    # Show transaction history and final balance
-    my_budget.show_history()
+    while True:
+        print("\n----- Monthly Budget -----\n")
+        print("1. Add Income")
+        print("2. Add Expense")
+        print("3. Show History")
+        print("4. Show Balance")
+        print("5. Exit")
+
+        choice = input("\nEnter your choice: ")
+
+        if choice == "1":
+            try:
+                my_budget.add_transaction(Income(input("Add description: "), float(input("Add income amount: "))))
+            except ValueError:
+                print()
+                print("Please enter a valid number. (450.50)")
+        elif choice == "2":
+            try:
+                my_budget.add_transaction(Expense(input("Add description: "), float(input("Add expense amount: ")),input("Add category: ")))
+            except ValueError:
+                print()
+                print("Please enter a valid number. (50.75)")
+        elif choice == "3":
+            my_budget.show_history()
+        elif choice == "4":
+            print(f"\nCurrent Balance: {my_budget.balance:.2f}")
+        elif choice == "5":
+            print("\nExiting...")
+            break
+        else:
+            print("\nInvalid choice, please try again\n")
 
 
 
