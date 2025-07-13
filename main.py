@@ -61,20 +61,20 @@ def main():
 
         if choice == "1":
             try:
-                my_budget.add_transaction(Income(input("Add description: "), float(input("Add income amount: "))))
+                my_budget.add_transaction(Income(input("Add description: ").strip().title(), float(input("Add income amount: "))))
             except ValueError:
                 print()
                 print("Please enter a valid number. (450.50)")
         elif choice == "2":
             try:
-                my_budget.add_transaction(Expense(input("Add description: "), float(input("Add expense amount: ")),input("Add category: ")))
+                my_budget.add_transaction(Expense(input("Add description: ").strip().title(), float(input("Add expense amount: ")),input("Add category: ")))
             except ValueError:
                 print()
                 print("Please enter a valid number. (50.75)")
         elif choice == "3":
             my_budget.show_history()
         elif choice == "4":
-            print(f"\nCurrent Balance: {my_budget.balance:.2f}")
+            print(f"\nCurrent Balance: ${my_budget.balance:.2f}")
         elif choice == "5":
             print("\nExiting...")
             break
